@@ -7,7 +7,14 @@ manifestVersion: 1
 id: rdouma-dev-hashrate-autopilot
 category: bitcoin
 name: Hashrate Autopilot (dev)
-version: "1.17.0-rc2"
+# DEV-STORE VERSIONING: bump the plain MAJOR.MINOR.PATCH on every dev
+# iteration - NEVER use an `-rcN` prerelease suffix here. Umbrel runs
+# manifest versions through `semver.coerce()`, which strips the
+# prerelease, so `1.17.0-rc1` and `1.17.0-rc2` both collapse to
+# `1.17.0` and the Update button never appears. The GHCR image tag can
+# still be a prerelease (to avoid polluting the production `latest` /
+# `1.17` rollups); only this manifest `version` must be a clean bump.
+version: "1.17.1"
 tagline: Autopilot for renting hashrate to mine on Ocean Mining
 icon: https://raw.githubusercontent.com/rdouma/hashrate-autopilot/main/assets/icon-512.png
 # Umbrel renders description literally - no YAML folding of soft
@@ -53,7 +60,7 @@ defaultPassword: ""
 submitter: Remco Douma
 submission: https://github.com/rdouma/hashrate-autopilot
 releaseNotes: |
-  v1.17.0-rc2 (dev test build) - secrets at rest, plus in-app password + token rotation.
+  1.17.1 (dev test build) - secrets at rest, plus in-app password + token rotation.
 
   NEW
   - Change your dashboard password and rotate your Braiins owner / read-only tokens right from Config -> Pool & Payout -> Security & credentials. No shell or SOPS needed, so it works on Umbrel. Changing the password takes effect immediately (the old one stops working at once); a new Braiins token is test-called against Braiins before it's saved so a typo can't break bidding, and applies after the next restart. Every change asks for your current password first.
